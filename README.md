@@ -12,3 +12,6 @@ brew install mecab-ipadic
 ```sh:
 pip3 install numpy mecab-python3 sklearn
 ```
+
+- Reference
+  - https://analysis-navi.com/?p=688
