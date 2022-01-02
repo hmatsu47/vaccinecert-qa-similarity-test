@@ -1,0 +1,1 @@
+# vaccinecert-qa-similarity-test
