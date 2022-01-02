@@ -1,6 +1,6 @@
 # vaccinecert-qa-similarity-test
 
-- Install MeCab & dictionary
+- Install MeCab & dictionary (for Mac)
 
 ```sh:
 brew install mecab
