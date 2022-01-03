@@ -5,6 +5,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 import json
 import logging
+import sys
 
 # Logger
 logger = logging.getLogger()
@@ -63,7 +64,8 @@ def sims_extract(data, cos_array):
 def main():
     try:
         # データ読み込み
-        data = data_load('data/faq/faq.json')
+        json_file = sys.argv[1]
+        data = data_load(json_file)
         # 評価用の文書を抽出・配列化
         qa_array = qa_extract(data)
         # 類似度計算
