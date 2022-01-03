@@ -29,3 +29,5 @@ python3 qa-similarity.py data/faq/faq.json > data/faq/faq-sim3.json
 
 - Reference
   - https://analysis-navi.com/?p=688
+  - https://qiita.com/Haruka-Ogawa/items/c2116f0eb5c859955d63
+  - https://naoyashiga.hatenablog.com/entry/2017/04/13/224339
