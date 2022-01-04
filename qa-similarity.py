@@ -49,13 +49,17 @@ def sims_extract(data, cos_array):
         indices = numpy.argsort(-tmp_indices)
         max4_indices_sorted = max4_indices[indices]
         # 自文書以外を抽出
-        sim_no_array = []
+        sim_array = []
         for idx in max4_indices_sorted:
             if idx != i:
-                sim_no_array.append(data[idx]['No'])
+                sim_item = {
+                    'No': data[idx]['No'],
+                    '質問': data[idx]['質問']
+                }
+                sim_array.append(sim_item)
         item = {
             'No': faq['No'],
-            '類似No': sim_no_array
+            '類似質問': sim_array
         }
         sims_array.append(item)
         i += 1
