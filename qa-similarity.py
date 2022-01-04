@@ -36,21 +36,21 @@ def qa_extract(data):
         docs.append(faq['質問'] + faq['回答'])
     return docs
 
-# 各文書の類似度上位 3 つを抽出
-def sims_extract(data, cos_array):
+# 各文書の類似度上位 n 個を抽出
+def sims_extract(data, cos_array, topn):
     sims_array = []
     i = 0
     for faq in data:
         cos = cos_array[i]
-        # 自文書を含む上位 4 つの index を抽出（未ソート）
-        max4_indices = numpy.argpartition(-cos, 4)[:4]
-        # 上位 4 つの index を類似度で降順ソート
-        tmp_indices = cos[max4_indices]
+        # 自文書を含む上位 n+1 個の index を抽出（未ソート）
+        topn_indices = numpy.argpartition(-cos, (topn + 1))[:(topn + 1)]
+        # 上位 n+1 個の index を類似度で降順ソート
+        tmp_indices = cos[topn_indices]
         indices = numpy.argsort(-tmp_indices)
-        max4_indices_sorted = max4_indices[indices]
+        topn_indices_sorted = topn_indices[indices]
         # 自文書以外を抽出
         sim_array = []
-        for idx in max4_indices_sorted:
+        for idx in topn_indices_sorted:
             if idx != i:
                 sim_item = {
                     'No': data[idx]['No'],
@@ -67,15 +67,16 @@ def sims_extract(data, cos_array):
 
 def main():
     try:
-        # データ読み込み
         json_file = sys.argv[1]
+        topn = int(sys.argv[2])
+        # データ読み込み
         data = data_load(json_file)
         # 評価用の文書を抽出・配列化
         qa_array = qa_extract(data)
         # 類似度計算
         cos_array = cosine_similarity(vector_array(qa_array), vector_array(qa_array))
-        # 上位 3 つを抽出
-        result = sims_extract(data, cos_array)
+        # 上位 n 個を抽出
+        result = sims_extract(data, cos_array, topn)
         print(json.dumps(result, ensure_ascii=False, indent=2))
     except Exception as e:
         logger.exception(e)
