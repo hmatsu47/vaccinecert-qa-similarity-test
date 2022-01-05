@@ -10,9 +10,8 @@ brew install mecab-ipadic
 ## Install MeCab & dictionary (for Ubuntu)
 
 ```sh:
-sudo apt install mecab
-sudo apt install libmecab-dev
-sudo apt install mecab-ipadic-utf8
+sudo apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
+sudo cp /etc/mecabrc /usr/local/etc
 ```
 
 ## Install Python library
@@ -24,14 +23,14 @@ pip install numpy mecab-python3 sklearn
 ## Usage
 
 ```sh:
-python3 qa-similarity.py data/faq/faq.json 3 > data/faq/faq-sim3.json
+python3 tool/data-creator/qa-similarity.py data/faq/faq.json 3 > data/faq/faq-similarity.json
 ```
 
 - `data/faq/faq.json`
   - input file
 - `3`
   - count of similar questions
-- `data/faq/faq-sim3.json`
+- `data/faq/faq-similarity.json`
   - output file
 
 ## Reference
