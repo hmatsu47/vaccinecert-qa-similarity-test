@@ -11,7 +11,11 @@ brew install mecab-ipadic
 
 ```sh:
 sudo apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
-sudo cp /etc/mecabrc /usr/local/etc
+git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
+cd mecab-ipadic-neologd
+./bin/install-mecab-ipadic-neologd -n -y
+echo dicdir = `mecab-config --dicdir`"/mecab-ipadic-neologd" > mecabrc 
+sudo cp mecabrc /usr/local/etc
 ```
 
 ## Install Python library
@@ -23,7 +27,7 @@ pip install numpy mecab-python3 sklearn
 ## Usage
 
 ```sh:
-python3 tool/data-creator/qa-similarity.py data/faq/faq.json 3 > data/faq/faq-similarity.json
+python3 tool/data-creator/qa-similarity.py data/faq/faq.json 3 > data/faq/similarity.json
 ```
 
 - `data/faq/faq.json`
