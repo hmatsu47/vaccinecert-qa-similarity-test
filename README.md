@@ -42,3 +42,4 @@ python3 tool/data-creator/qa-similarity.py data/faq/faq.json 3 > data/faq/simila
 - https://analysis-navi.com/?p=688
 - https://qiita.com/Haruka-Ogawa/items/c2116f0eb5c859955d63
 - https://naoyashiga.hatenablog.com/entry/2017/04/13/224339
+- https://qiita.com/Takayoshi_Makabe/items/18cefa4b4572d12b5aa9
